@@ -1,9 +1,6 @@
 <?php
 
-function router(){
-    echo "2. Router está analisando a URL.<br>";
-
-    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+function normalizarRota($uri){
     $uri = parse_url($uri, PHP_URL_PATH) ?: '/';
 
     $basePath = '/components';
@@ -16,6 +13,15 @@ function router(){
     if ($rota === '//') {
         $rota = '/';
     }
+
+    return strtolower($rota);
+}
+
+function router(){
+    echo "2. Router está analisando a URL.<br>";
+
+    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+    $rota = normalizarRota($uri);
 
     middleware($rota);
 }

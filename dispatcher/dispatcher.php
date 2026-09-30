@@ -3,13 +3,6 @@
 function dispatcher($rota){
     echo "5. Dispatcher decidiu qual controller deve executar.<br>";
 
-    $rota = strtolower(trim((string) $rota));
-    $rota = '/' . trim($rota, '/');
-
-    if ($rota === '') {
-        $rota = '/';
-    }
-
     $rotas = [
         '/' => 'usuarioController',
         '/usuarios' => 'usuarioController',
