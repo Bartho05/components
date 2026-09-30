@@ -4,7 +4,6 @@ function dispatcher($rota){
     echo "5. Dispatcher decidiu qual controller deve executar.<br>";
 
     $rotas = [
-        '/' => 'usuarioController',
         '/usuarios' => 'usuarioController',
         '/pets' => 'petsController'
     ];
