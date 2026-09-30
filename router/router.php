@@ -2,7 +2,20 @@
 
 function router(){
     echo "2. Router está analisando a URL.<br>";
-    $rota = "/usuarios";
-    $parametro = "id=123";
+
+    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+    $uri = parse_url($uri, PHP_URL_PATH) ?: '/';
+
+    $basePath = '/components';
+    if (strpos($uri, $basePath) === 0) {
+        $uri = substr($uri, strlen($basePath));
+    }
+
+    $rota = '/' . trim($uri, '/');
+
+    if ($rota === '//') {
+        $rota = '/';
+    }
+
     middleware($rota);
 }
